@@ -7,7 +7,41 @@
 \*------------------------------------*/
 
 :root {
+    --global-color-alpha-light: #4F95FF;
+    --global-color-alpha: #3385FF;
+    --global-color-alpha-dark: #2E77E6;
+    --global-color-alpha-transparent: #3385FF4d; 
+    --global-color-alpha-x-transparent: #3385ffbf;
 
+    --global-color-neutral-xxxx-light: #FFF;
+    --global-color-neutral-xxx-light: #F5F6FA;
+    --global-color-neutral-xx-light: #E2E3E7;
+    --global-color-neutral-x-light: #caccd4;
+    --global-color-neutral-light: #b5b6c0;
+    --global-color-neutral: #a0a1ad;
+    --global-color-neutral-dark: #8B8C9A;
+    --global-color-neutral-x-dark: #757787;
+    --global-color-neutral-xx-dark: #606274;
+    --global-color-neutral-xxx-dark: #4b4c60;
+    --global-color-neutral-xxxx-dark: #35374d;
+    --global-color-neutral-xxxxx-dark: #2a2c43;
+    --global-color-neutral-xxxxxx-dark: #20223A;
+
+    --global-border-width: 1px;
+    --global-border-xx-light: var(--global-border-width) solid var(--global-color-neutral-xx-light);
+    --global-border-dark: var(--global-border-width) solid var(--global-color-alpha-dark);
+
+    --global-box-shadow-alpha: 0 0 0 3px var(--global-color-alpha-transparent);
+
+    --global-baseline: 8px;
+    --global-whitespace-xs: calc(var(--global-baseline)/2); /* =4px */
+    --global-whitespace-sm: var(--global-baseline); /* =8px */
+    --global-whitespace-md: calc(var(--global-baseline)*2); /* =16px */
+    --global-whitespace: calc(var(--global-baseline)*3); /* =24px */
+    --global-whitespace-lg: calc(var(--global-baseline)*4); /* =32px */
+    --global-whitespace-xl: calc(var(--global-baseline)*6); /* =48px */
+    --global-whitespace-xxl: calc(var(--global-baseline)*9); /* =72px */
+    --global-whitespace-xxxl: calc(var(--global-baseline)*12); /* =96px */
 }
 
 /* CSS variables here */
@@ -24,13 +58,13 @@
 
 html {
     font-size: 16px;
-    line-height: 1.5;
-    font-family: Helvetica, arial, sans-serif;
-    color: grey;
+    line-height: calc(var(--global-baseline)*3);
+    font-family: Inter, sans-serif;
+    color: var(--global-color-neutral-xxxxxx-dark);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: white;
+    background-color:  var(--global-color-neutral-xxx-light);
 }
 
 *,
@@ -47,13 +81,13 @@ html {
 */
 
 ::-moz-selection {
-    background: HotPink;
+    background: var(--global-color-alpha);
     color: white;
     text-shadow: none;
 }
 
 ::selection {
-    background: HotPink;
+    background: var(--global-color-alpha);
     color: white;
     text-shadow: none;
 }
@@ -87,28 +121,28 @@ h3 {
 
 h1 {
     font-size: 36px;
-    line-height: 48px;
-    margin: 0 0 24px;
+    line-height: calc(var(--global-baseline)*6);
+    margin: 0 0 var(--global-whitespace);
 }
 
 h2 {
     font-size: 32px;
-    line-height: 40px;
-    margin: 0 0 24px;
+    line-height: calc(var(--global-baseline)*5);
+    margin: 0 0 var(--global-whitespace);
 }
 
 h3 {
     font-size: 26px;
-    line-height: 32px;
-    margin: 0 0 24px;
+    line-height: calc(var(--global-baseline)*4);
+    margin: 0 0 var(--global-whitespace);
 }
 
 h4,
 h5,
 h6 {
     font-size: 20px;
-    line-height: 24px;
-    margin: 0 0 24px;
+    line-height: calc(var(--global-baseline)*3);
+    margin: 0 0 var(--global-whitespace);
 }
 
 p,
@@ -118,12 +152,12 @@ dl,
 table,
 address,
 figure {
-    margin: 0 0 24px;
+    margin: 0 0 var(--global-whitespace);
 }
 
 ul,
 ol {
-    padding-left: 24px;
+    padding-left: var(--global-whitespace);
 }
 
 li ul,
@@ -134,8 +168,8 @@ li ol {
 blockquote {
     font-style: normal;
     font-size: 23px;
-    line-height: 32px;
-    margin: 0 0 24px;
+    line-height: calc(var(--global-baseline)*4);
+    margin: 0 0 var(--global-whitespace);
 }
 
 blockquote * {
@@ -146,31 +180,41 @@ blockquote * {
 figcaption {
     font-weight: 400;
     font-size: 12px;
-    line-height: 16px;
-    margin-top: 8px;
+    line-height: calc(var(--global-baseline)*2);
+    margin-top: var(--global-whitespace-sm);
 }
 
 hr {
     border: 0;
     height: 1px;
     background: LightGrey;
-    margin: 0 0 24px;
+    margin: 0 0 var(--global-whitespace);
 }
 
 a {
-    color: HotPink;
+    color: var(--global-color-alpha);
     transition: all .1s ease-in-out;
 }
 
 a:visited,
 a:active {
-    color: HotPink;
+    color: var(--global-color-alpha);
 }
 
 a:hover,
 a:focus {
-    color: DeepPink;
+    color: var(--global-color-alpha-light);
 }
+
+/*
+Elements: forms
+---
+Default markup for forms
+*/
+input, label {
+    display: block;
+}
+
 
 /*------------------------------------*\
 #OBJECTS
@@ -184,36 +228,38 @@ a:focus {
 
 .o-row {
     position: relative;
-    padding: 24px 24px 0;
+    padding: var(--global-whitespace) var(--global-whitespace) 0;
 }
 
 .o-row--login {
     /* stuff here to align the card */
+    display: flex;
+    justify-content: center;
 }
 
 /* size modifiers */
 
 .o-row--lg {
-    padding-top: 48px;
-    padding-bottom: 24px;
+    padding-top: var(--global-whitespace-xl);
+    padding-bottom: var(--global-whitespace);
 }
 
 .o-row--xl {
-    padding-top: 72px;
-    padding-bottom: 48px;
+    padding-top: var(--global-whitespace-xxl);
+    padding-bottom: var(--global-whitespace-xl);
 }
 
 @media (min-width: 768px) {
     .o-row {
-        padding-left: 48px;
-        padding-right: 48px;
+        padding-left: var(--global-whitespace-xl);
+        padding-right: var(--global-whitespace-xl);
     }
 }
 
 @media (min-width: 992px) {
     .o-row--xl {
-        padding-top: 96px;
-        padding-bottom: 72px;
+        padding-top: var(--global-whitespace-xxxl);
+        padding-bottom: var(--global-whitespace-xxl);
     }
 }
 
@@ -241,19 +287,19 @@ a:focus {
 }
 
 .o-section + .o-section {
-    padding-top: 24px;
+    padding-top: var(--global-whitespace);
 }
 
 @media (min-width: 768px) {
     .o-section--lg + .o-section--lg,
     .o-section--xl + .o-section--xl {
-        padding-top: 48px;
+        padding-top: var(--global-whitespace-xl);
     }
 }
 
 @media (min-width: 992px) {
     .o-section--xl + .o-section--xl {
-        padding-top: 72px;
+        padding-top: var(--global-whitespace-xxl);
     }
 }
 
@@ -279,35 +325,35 @@ a:focus {
 /* gutter modifiers, these affect o-layout__item too */
 
 .o-layout--gutter {
-    margin: 0 -12px;
+    margin: 0 calc(var(--global-whitespace)/2*-1);
 }
 
 .o-layout--gutter > .o-layout__item {
-    padding: 0 12px;
+    padding: 0 calc(var(--global-whitespace)/2);
 }
 
 .o-layout--gutter-sm {
-    margin: 0 -6px;
+    margin: 0 calc(var(--global-whitespace)/4*-1);
 }
 
 .o-layout--gutter-sm > .o-layout__item {
-    padding: 0 6px;
+    padding: 0 calc(var(--global-whitespace)/4);
 }
 
 .o-layout--gutter-lg {
-    margin: 0 -24px;
+    margin: 0 calc(var(--global-whitespace)*-1);
 }
 
 .o-layout--gutter-lg > .o-layout__item {
-    padding: 0 24px;
+    padding: 0 var(--global-whitespace);
 }
 
 .o-layout--gutter-xl {
-    margin: 0 -48px;
+    margin: 0 calc(var(--global-whitespace-xl)*-1);
 }
 
 .o-layout--gutter-xl > .o-layout__item {
-    padding: 0 48px;
+    padding: 0 var(--global-whitespace-xl);
 }
 
 /* reverse horizontal row modifier */
@@ -431,18 +477,81 @@ a:focus {
     ---
     Website main logo
 */
+.c-logo {
+    display: flex;
+    justify-content: center;
+    height: 24px;
+}
+
+.c-logo__inner_circle {fill:#3385FF;}
+.c-logo__outer_circle {fill:#1B4186;}
+.c-logo__text {fill:#20223A;}
+
+.c-logo__symbol {
+    height: 100%;
+    display: block;
+}
 
 /*
     Component: Card
     ---
     Card with box shadow
 */
+.c-card {
+    background-color: var(--global-color-neutral-xxxx-light);
+
+    border-radius: 3px;
+    border: var(--global-border-xx-light);
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.07);
+}
+
+.c-card__body {
+    padding: 0 var(--global-whitespace);
+}
+
+.c-card__header {
+    padding-top: var(--global-whitespace);
+    padding-bottom: 0;
+    padding:var(--global-whitespace) var(--global-whitespace) 0px ;
+}
+
+.c-card__title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: calc(var(--global-baseline)/2*5);
+}
+
+.c-card__footer {
+    border-top: 1px solid var(--global-color-neutral-xx-light);
+    padding: var(--global-whitespace) var(--global-whitespace) 0;
+}
+
+@media screen and (min-width: 500px){
+    .c-card__header {
+        padding-top: var(--global-whitespace-xl);
+        padding-bottom: var(--global-whitespace);
+    }
+
+    .c-card__body, .c-card__header, .c-card__footer {
+        padding-left: var(--global-whitespace-xl);
+        padding-right: var(--global-whitespace-xl);
+    }
+}
 
 /*
     Component: Forms
     ---
     Everything form related here
 */
+.c-form-field {
+
+}
+
+.c-form-field--option {
+    display: flex;
+    align-items: center;
+}
 
 /*
     Component: Input
@@ -451,10 +560,27 @@ a:focus {
 */
 
 .c-input {
+    /* all: unset; use with care */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 
+    font-family: inherit; /* expliciet naar htlm tag kijken */
+    color: var(--global-color-neutral-xxxxxx-dark);
+    font-size: 16px;
+    line-height: calc(var(--global-baseline)*3);
+    padding: calc(var(--global-baseline)*1.5 - var(--global-border-width)) var(--global-whitespace-md) ;
+
+    width: 100%;
+    border-radius: 3px;
+    border: var(--global-border-xx-light);
 }
 
 .c-input:focus {
+    outline: none;
+
+    border-color: var(--global-color-alpha);
+    box-shadow: var(--global-box-shadow-alpha);
 }
 
 /*
@@ -464,7 +590,15 @@ a:focus {
 */
 
 .c-label {
+    font-size: 14px;
+    line-height: calc(var(--global-baseline)*2);
+    margin-bottom: var(--global-whitespace-sm);
+    color: var(--global-color-neutral-xx-dark);
+}
 
+.c-label--option {
+    margin-bottom: 0;
+    margin-left: var(--global-whitespace-sm);
 }
 
 /* If a input is focused within the form-field class change te color of the label */
@@ -480,19 +614,31 @@ a:focus {
 */
 
 .c-button {
+    width: 100%;
+
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--global-color-neutral-xxxx-light);
+    line-height: calc(var(--global-baseline)/2*5);
+    padding: calc(var(--global-baseline)*1.5 - var(--global-border-width)) var(--global-whitespace-md) ;
+
+    border: var(--global-border-dark);
+    border-radius: 3px;
+    background-color: var(--global-color-alpha);
 
 }
 
 .c-button:hover {
-
+    background-color: var(--global-color-alpha-light);
 }
 
 .c-button:focus {
-
+    outline: none;
+    box-shadow: var(--global-box-shadow-alpha);
 }
 
 .c-button:active {
-
+    background-color: var(--global-color-alpha-dark);
 }
 
 .c-button--block {
@@ -532,23 +678,23 @@ a:focus {
 }
 
 .u-mb-xs {
-    margin-bottom: 4px !important;
+    margin-bottom: var(--global-whitespace-xs) !important;
 }
 
 .u-mb-sm {
-    margin-bottom: 8px !important;
+    margin-bottom: var(--global-whitespace-sm) !important;
 }
 
 .u-mb-md {
-    margin-bottom: 16px !important;
+    margin-bottom: var(--global-whitespace-md) !important;
 }
 
 .u-mb-lg {
-    margin-bottom: 32px !important;
+    margin-bottom: var(--global-whitespace-lg) !important;
 }
 
 .u-mb-xl {
-    margin-bottom: 48px !important;
+    margin-bottom: var(--global-whitespace-xl) !important;
 }
 
 /*
